@@ -1,7 +1,11 @@
 <div class="container mt-5">
   <h2>Here is the list of all movies</h2>
-  <% @list.each do |list| %>
-    <p><%= link_to list.name, list_path(list) %></p>
-  <% end %>
+  <div class="cards">
+      <% @lists.each do |list| %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, crop: :fill %>')">
+          <p><%= link_to list.name, list_path(list) %></p>
+        </div>
+      <% end %>
+  </div>
   <%= link_to 'New list', new_list_path %>
 </div>

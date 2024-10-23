@@ -1,11 +1,19 @@
 <div class="container mt-5">
   <h2>Here is the list of all <%= @list.name %> movies.</h2>
-  <h2>Bookmarks for <%= @list.name %></h2>
-  <% @list.movies.each do |movie| %>
+  <div class="cards">
+    <% @list.movies.each do |movie| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= movie.poster_url %>)">
+        <p><%= movie.title %></p>
+        <p><%= movie.overview %></p>
+        <p><%= movie.rating %></p>
+      </div>
+    </div>
+
+    <h2>Bookmarks for <%= @list.name %></h2>
     <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-    <p><%= movie.title %></p>
     <p><%= bookmark.comment %></p>
-    <p><%= link_to 'Delete', bookmark_path(bookmark.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list?"} %></p>
+    <p><%= link_to 'Delete', bookmark_path(bookmark.id),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list?"} %></p>
   <% end %>
 
 

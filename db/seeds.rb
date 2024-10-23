@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'json'
 
+Movie.destroy_all
 def fetch_movies
   url = 'https://tmdb.lewagon.com/movie/top_rated'
   JSON.parse(URI.open(url).read)['results']
@@ -19,3 +20,11 @@ movies.each do |movie_data|
 end
 
 puts 'Finished seeding movies!'
+
+List.destroy_all
+# List.create(name: 'Drama')
+# List.create(name: 'Horror')
+# List.create(name: 'Suspense')
+# List.create(name: 'Detective')
+# List.create(name: 'Comedy')
+# List.create(name: 'Romantic')
