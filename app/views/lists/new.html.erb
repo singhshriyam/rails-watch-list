@@ -1,0 +1,12 @@
+<div class="container mt-5">
+  <h2>Fill in the form to create a new list:</h2>
+  <%= simple_form_for(@list) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+</div>
