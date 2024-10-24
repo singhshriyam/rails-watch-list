@@ -1,11 +1,19 @@
 <div class="container mt-5">
-  <h2>Here is the list of all movies</h2>
-  <div class="cards">
-      <% @lists.each do |list| %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, crop: :fill %>')">
-          <p><%= link_to list.name, list_path(list) %></p>
-        </div>
-      <% end %>
+  <div class="banner mb-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+    <div class="container">
+      <h1 class="p-5">List of all <strong>Genre</strong> of <strong>Movies</strong>!</h1>
+      <p>Your Personal Movie Universe, Curated Just for You!</p>
+      <p><%= link_to 'New list', new_list_path, class: 'btn btn-light' %></p>
+    </div>
   </div>
-  <%= link_to 'New list', new_list_path %>
+  <div class="position-relative">
+    <div class="cards">
+        <% @lists.each do |list| %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, crop: :fill %>')">
+            <p><%= link_to list.name, list_path(list), class: 'nav-link' %></p>
+            <p><%= link_to '&times;'.html_safe, list_path(list), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{list.name} list?"}, class: 'nav-link' %></p>
+          </div>
+        <% end %>
+    </div>
+  </div>
 </div>
